@@ -13,6 +13,7 @@ struct Node{
 void printList(struct Node* head);
 struct Node*  insertStart(struct Node* head, int num);
 struct Node* insertAt(struct Node* head, int num, int pos);
+struct Node* deleteAt(struct Node* head, int pos);
 
 int main(){
 
@@ -29,6 +30,14 @@ int main(){
         printf("Enter the position : ");
         scanf("%d",&p);
         head = insertAt(head,ele,p);
+        printList(head);
+    }
+    printf("\n~~~~~Delete~~~~~\n");
+    for (int i = 0; i < n; ++i) {
+
+        printf("Enter the position to delete : ");
+        scanf("%d",&p);
+        head = deleteAt(head,p);
         printList(head);
     }
 
@@ -99,4 +108,43 @@ struct Node* insertAt(struct Node* head, int num, int pos){
     return hd;
 }//insertAt
 
+
+struct Node* deleteAt(struct Node* head, int pos){
+
+    if(head==NULL){
+        printf("No elements to delete!!");
+        return head;
+    }
+
+    struct Node* prv=NULL;
+    if(pos==1){
+        prv=head->next;
+        free(head);
+        return prv;
+    }
+
+    int counter=1;
+    struct Node* hd=head;
+    while (head->next!=NULL){
+        if(pos-1==counter){
+            prv = head->next->next;
+            free(head->next);
+            head->next = prv;
+            return hd;
+        }
+        prv=head;
+        head=head->next;
+        counter++;
+    }
+
+    if(counter==pos){
+        free(prv->next);
+        prv->next=NULL;
+
+    } else {
+        printf("\nYou have entered invalid no of elements!!\n");
+    }
+    return hd;
+
+}//deleteAt
 
