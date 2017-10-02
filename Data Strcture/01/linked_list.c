@@ -158,24 +158,12 @@ struct Node* revList(struct Node* head){
 
     struct Node* tmp=NULL;
     struct Node* prv=NULL;
-    int counter=1;
-
-    if(counter=1 && head->next==NULL){
-        return head;
-    }
 
     while (head!=NULL){
-
         tmp= head->next;
-        if(counter==1){
-            head->next=NULL;
-        }
-        else{
-            head->next=prv;
-        }
+        head->next=prv;
         prv = head;
         head = tmp;
     }
-
     return prv;
 }//revList
