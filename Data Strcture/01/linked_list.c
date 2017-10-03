@@ -8,13 +8,18 @@
 struct Node{
     int data;
     struct Node* next;
-} node;
+};
 
 void printList(struct Node* head);
 struct Node*  insertStart(struct Node* head, int num);
 struct Node* insertAt(struct Node* head, int num, int pos);
 struct Node* deleteAt(struct Node* head, int pos);
 struct Node* revList(struct Node* head);
+void revRec(struct Node * head);
+struct Node* revLink(struct Node * head);
+
+
+struct Node* h;
 
 int main(){
 
@@ -55,6 +60,15 @@ int main(){
     printf("\n~~~~~Reverse~~~~~\n");
     head = revList(head);
     printList(head);
+
+    printf("\n~~~~~Rec Reverse~~~~~\n");
+    revRec(head);
+    printf("\n");
+
+    printf("\n~~~~~Rec Reverse Link~~~~~\n");
+    revLink(head);
+    printf("\n");
+    printList(h);
 
     return 0;
 }//main
@@ -167,3 +181,30 @@ struct Node* revList(struct Node* head){
     }
     return prv;
 }//revList
+
+
+void revRec(struct Node * head){
+
+    if(head->next==NULL)
+        printf("%d\t",head->data);
+    else {
+        revRec(head->next);
+        printf("%d\t", head->data);
+    }
+}
+
+
+struct Node* revLink(struct Node * head){
+
+    struct Node* tmp=NULL;
+    if(head->next==NULL){
+        h=head;
+        return head;
+    }
+
+    tmp = revLink(head->next);
+    tmp->next=head;
+    head->next=NULL;
+    return head;
+
+}
