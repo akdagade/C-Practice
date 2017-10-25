@@ -33,10 +33,10 @@ void mergeSort(int l, int u){
     mergeSort(l,m);
     mergeSort(m+1,u);
     mergeArray(l,m,u);
-
 }
 
 void mergeArray(int l, int m, int u){
+
     int i=l,j=m+1,k=l;
     while (i<m+1 && j< u+1){
         if(a[i] <= a[j]){
