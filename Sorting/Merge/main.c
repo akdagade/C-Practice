@@ -27,11 +27,9 @@ int main(){
 
 void mergeSort(int l, int u){
 
-    if(l>u)
+    if(l>=u)
         return;
     int m = (l+u)/2;
-    //printf("%d %d %d\n",l,m,u);
-    if(l!=u)
     mergeSort(l,m);
     mergeSort(m+1,u);
     mergeArray(l,m,u);
@@ -39,9 +37,7 @@ void mergeSort(int l, int u){
 }
 
 void mergeArray(int l, int m, int u){
-    int i=l,j=m+1;
-    int k=l;
-    int tmp;
+    int i=l,j=m+1,k=l;
     while (i<m+1 && j< u+1){
         if(a[i] <= a[j]){
             b[k] = a[i];
